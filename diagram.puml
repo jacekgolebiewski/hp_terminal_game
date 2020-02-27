@@ -1,0 +1,132 @@
+@startuml
+
+
+left header Nagłówek [center, right]
+title Sequence try out diagram
+footer Page %page% of %lastpage%
+
+' grouping
+' alt/else
+' opt
+' loop
+' par
+' break
+' critical
+' group, followed by a text to be displayed
+
+' ++ Activate the target (optionally a #color may follow this)
+' -- Deactivate the source
+' ** Create an instance of the target
+' !! Destroy an instance of the target
+
+' example of usage
+actor Foo1
+boundary Foo2
+control Foo3
+entity Foo4
+database Foo5
+collections Foo6
+
+group showcase
+    [-> Foo1: income from somewhere
+
+    Foo1 -> Foo2 ++ #blue: example()
+    return response
+
+
+    autonumber
+    {start} Foo1 -> Foo2: example\ninteraction()
+    activate Foo2
+
+    {end} Foo1 -> Foo2: example\ninteraction()
+    activate Foo2 #red
+    note left
+        first interaction
+    end note
+    Foo1 <- Foo2: response
+    deactivate Foo2
+    deactivate Foo2
+
+    {start} <-> {end} : some time
+    ' space after interaction |||
+    |||
+    |||
+    |||
+    |||
+    Foo1 -> Foo2: example\nfailed\ninteraction()
+    activate Foo2
+    note over Foo2 #rose
+        second interaction
+    end note
+    Foo1 x<-- Foo2: example response
+    destroy Foo2
+    == Initialization ==
+    ... Some ~~long delay~~ ...
+    note left
+      This is **bold**
+      This is //italics//
+      This is ""monospaced""
+      This is --stroked--
+      This is __underlined__
+      This is ~~waved~~
+      <b>example html</b>
+    end note
+    autonumber stop
+end
+
+newpage Second page title
+
+' aviva biznes try out
+
+participant App1 as "Aplikacja 1"  #lightblue
+participant App2 as "Aplikacja 2"  #orange
+participant App3 as "Aplikacja 3"  #lightgreen
+
+note left of App1 #yellow
+	Frontend i backend aplikacji Aplikacja 1
+end note
+
+App1 -> App2: getPackage()
+App1 <-- App2: getPackageResult()
+
+
+' declare -> app4_fe as "App4_Frontend"
+Alice -> "Bob()" : Hello
+"Bob()" -> "This is very\nlong" as Long
+' You can also declare:
+' "Bob()" -> Long as "This is very\nlong"
+Long --> "Bob()" : ok
+
+app4_fe -> App4_Backend: saveParticipantsList()
+App4_Backend -> App4_Backend: getFullInsuranceParticipation
+
+App4_Backend -> App2: addClientList(1/3)
+App2 -> App3: addClientList(1/3)
+App3 -> App2
+App2 -> App4_Backend
+
+App4_Backend -> App2: addClientList(2/3)
+App2 -> App3: addClientList(2/3)
+App3 -> App2
+App2 -> App4_Backend
+
+App4_Backend -> App2: addClientList(3/3)
+App2 ->x App3: addClientList(3/3)
+App3 ->x App2
+App2 ->x App4_Backend : error
+
+App4_Backend -> App2: getClientList(idOffer)
+App2 -> App3: getClientList(idOffer)
+App3 -> App2: getClientListResp(1/2)
+App2 -> App4_Backend
+
+App4_Backend -> App2: getClientList(idOffer, 2/2)
+App3 -> App2: getClientListResp(2/2)
+App2 -> App4_Backend
+
+App4_Backend -> App2: removeclientList(idOffer, PartenonIdsFromPackages[1,2] )
+App3 -> App2: removeclientList
+App2 -> App4_Backend
+App4_Backend -> App4_Frontend: peszek, try again later
+
+@enduml
