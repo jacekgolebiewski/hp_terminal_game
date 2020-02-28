@@ -1,8 +1,16 @@
 class Direction {
-    static N = new Direction(0, -1);
-    static S = new Direction(0, 1);
-    static W = new Direction(1, 0);
-    static E = new Direction(-1, 0);
+    static get N() {
+        return new Direction(0, -1)
+    }
+    static get S() {
+        return new Direction(0, 1);
+    }
+    static get W() {
+        return new Direction(1, 0);
+    }
+    static get E() {
+        return new Direction(-1, 0);
+    }
 
     constructor(x, y) {
         this.x = x;

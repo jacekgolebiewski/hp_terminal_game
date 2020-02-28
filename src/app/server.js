@@ -34,6 +34,9 @@ module.exports = (async function () {
             case 'd':
                 player1.right();
                 break;
+            case 'f':
+                player1.spell('bombarda');
+                break;
         }
     });
     setInterval(() => game.runFrame(), 110);

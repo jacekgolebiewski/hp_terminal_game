@@ -1,5 +1,6 @@
 const NEUTRAL = '\033[39m';
 const RED = '\033[31m';
+const LIGHT_RED = '\033[91m';
 const GREEN = '\033[32m';
 const YELLOW = '\033[33m';
 const BLUE = '\033[34m';
@@ -16,6 +17,7 @@ class ConsoleApi {
         return {
             NEUTRAL,
             RED,
+            LIGHT_RED,
             GREEN,
             YELLOW,
             BLUE,

@@ -2,9 +2,8 @@ var keypress = require('keypress');
 
 class KeyboardApi {
 
-    listeners = [];
-
     constructor() {
+        this.listeners = [];
         keypress(process.stdin);
         process.stdin.on('keypress', (ch, key) => {
             if (key) {

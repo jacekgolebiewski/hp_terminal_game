@@ -1,14 +1,29 @@
-const Spell = require('./spell');
-const SpellEffect = require('./spell-effect');
+const BaseElement = require('../element');
+const ConsoleApi = require('./../../api/console/console-api');
+const Time = require('../../common/time');
+const Pixel = require('../../common/pixel');
 
-class SpellBombarda extends Spell {
+class SpellBombarda extends BaseElement {
 
-    constructor() {
-        super(30, SpellEffect.NONE);
+    constructor(position, direction) {
+        super();
+        this.position = position;
+        this.direction = direction;
+
+        this.hit = 30;
     }
 
-    draw() {
+    draw(game) {
+        ConsoleApi.draw(new Pixel(
+            this.position, '*', ConsoleApi.COLOR.LIGHT_RED
+        ));
+    }
 
+    live(game) {
+        super.onLiveReady(() => {
+            this.position.x += this.direction.x;
+            this.position.y += this.direction.y;
+        });
     }
 
 }

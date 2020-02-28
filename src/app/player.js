@@ -3,13 +3,15 @@ const Point = require('../common/point');
 const Direction = require('../common/direction');
 const ConsoleApi = require('../api/console/console-api');
 const Pixel = require('../common/pixel');
+const SpellBombarda = require('../element/spell/spell-bombarda');
 
 class Player extends BaseElement {
 
     constructor() {
         super();
         this.position = new Point(5, 5);
-        this.type = 'Player'
+        this.direction = Direction.N;
+        this.type = 'Player';
     }
 
     moveDirection(dir) {
@@ -21,7 +23,12 @@ class Player extends BaseElement {
     }
 
     live(game) {
-
+        super.onLiveReady(() => {
+            if (this.castSpell === 'bombarda') {
+                this.castSpell = undefined;
+                game.add(new SpellBombarda(this.position, this.direction))
+            }
+        });
     }
 
     up() {
@@ -38,6 +45,10 @@ class Player extends BaseElement {
 
     right() {
         this.moveDirection(Direction.W);
+    }
+
+    spell(name) {
+        this.castSpell = name;
     }
 
 

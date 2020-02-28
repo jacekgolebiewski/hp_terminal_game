@@ -13,7 +13,6 @@ class BaseAnimation extends BaseElement {
 
     constructor(pixelArr) {
         super();
-        this.lastUpdate = Time.now();
         this.position = new Point(10, 10);
         this.currentFrameIdx = 0;
         this.frames = pixelArr;
@@ -44,10 +43,9 @@ class BaseAnimation extends BaseElement {
             game.delete(this);
             return;
         }
-        if (this.lastUpdate && Time.diff(this.lastUpdate) < 100) {
-            return;
-        }
-        this.currentFrameIdx++;
+        super.onLiveReady(() => {
+            this.currentFrameIdx++;
+        });
     }
 
     finished() {

@@ -1,3 +1,5 @@
+const Time = require('../common/time');
+
 function generateId() {
     return Math.random().toString(36).substring(4);
 }
@@ -24,6 +26,14 @@ class BaseElement {
         if (!this.type) {
             throw Error(`Set type property of your element`);
         }
+    }
+
+    onLiveReady(fn) {
+        if (this.lastUpdate && Time.diff(this.lastUpdate) < 100) {
+            return;
+        }
+        this.lastUpdate = Time.now();
+        fn && fn();
     }
 
 }
