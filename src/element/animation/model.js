@@ -28,8 +28,8 @@ function frameToPixels(frame, offset, color, transparent) {
 }
 
 class Model {
-    constructor(frame, offset, color) {
-        this.data = frameToPixels(frame, offset, color, true);
+    constructor(frame, offset, color, transparent) {
+        this.data = frameToPixels(frame, offset, color, transparent);
     }
 }
 
