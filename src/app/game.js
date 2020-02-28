@@ -3,11 +3,14 @@ const EventType = require('../api/socket/event/event-type');
 const Point = require('../common/point');
 
 class Game {
-    offset = new Point(1,1);
-    events = [];
-    elements = [];
 
-    loop() {
+    constructor() {
+        this.offset = new Point(1,1);
+        this.events = [];
+        this.elements = [];
+    }
+
+    runFrame() {
         this.elements.sort(el => el.priority);
         let loopElements = [...this.elements];
 

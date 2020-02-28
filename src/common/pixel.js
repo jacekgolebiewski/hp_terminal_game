@@ -1,5 +1,9 @@
 class Pixel {
-    position;
-    ch;
-    color;
+
+    constructor(point, ch, color) {
+        this.point = point;
+        this.ch = ch;
+        this.color = color;
+    }
+
 }

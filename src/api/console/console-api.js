@@ -1,22 +1,29 @@
-const WHITE = `\e[39m`;
-const RED = `\e[31m`;
+const NEUTRAL = '\033[39m';
+const RED = '\033[31m';
+const CLEAR = '\033[2J';
 
-const getCursorPositionChars = function (x, y) {
-    return `\033[${y};${}`
-}
+const getCursorPositionChars = function (point) {
+    return '\e[${point.y};${point.x}H';
+};
 
 class ConsoleApi {
     static get COLOR() {
-        return [
-            WHITE,
+        return {
+            NEUTRAL,
             RED
-        ]
+        };
     }
 
-    draw(pixel)
+    static draw(pixel) {
+        ConsoleApi.write(`${getCursorPositionChars(pixel.point)}${pixel.color}${pixel.ch}${ConsoleApi.COLOR.NEUTRAL}`);
+    }
 
-    write(str) {
+    static write(str) {
         process.stdout.write(str);
+    }
+
+    static clear() {
+        ConsoleApi.write(CLEAR)
     }
 
 }

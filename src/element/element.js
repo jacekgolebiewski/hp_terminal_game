@@ -3,25 +3,30 @@ function generateId() {
 }
 
 class BaseElement {
-    type;
-    priority;
+    // type;
+    // priority;
 
     constructor() {
-        if (!this.type) {
-            throw Error(`Set type property of your element`);
-        }
         this.id = generateId();
     }
 
     draw(game) {
+        this.validate();
         throw Error(`Implement draw() method of your element: ${this.type}`);
     }
 
     live(game) {
+        this.validate();
         throw Error(`Implement live() method of your element: ${this.type}`);
+    }
+
+    validate() {
+        if (!this.type) {
+            throw Error(`Set type property of your element`);
+        }
     }
 
 }
 
-module.exports = Element;
+module.exports = BaseElement;
 
