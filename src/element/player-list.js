@@ -28,27 +28,14 @@ class PlayerList extends BaseElement {
                 {
                     x: 25, y: i + 7
                 },
-                `${currentPlayer.name}(${PlayerList.getHealthAliveName(currentPlayer.health)}): ${currentPlayer.health}HP`,
-                PlayerList.getHealthColor(currentPlayer.health)
+                `${currentPlayer.name}(${PlayerList.getHealthAliveName(currentPlayer.alive)}): ${currentPlayer.health}HP, ${currentPlayer.mana}MP`,
+                currentPlayer.getHealthColor()
             ));
         }
     }
 
-    static getHealthAliveName(health) {
-        return health > 0 ? 'Alive' : 'DEAD';
-    }
-
-    static getHealthColor(health) {
-        if (health >= 90) {
-            return ConsoleApi.COLOR.GREEN;
-        }
-        if (health >= 30) {
-            return ConsoleApi.COLOR.YELLOW;
-        }
-        if (health >= 5) {
-            return ConsoleApi.COLOR.RED;
-        }
-        return ConsoleApi.COLOR.LIGHT_MAGENTA;
+    static getHealthAliveName(alive) {
+        return alive ? 'Alive' : 'DEAD';
     }
 
     positions() {

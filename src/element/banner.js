@@ -29,7 +29,6 @@ class Banner extends BaseElement {
         });
     }
 
-
     positions() {
         return [];
     }
