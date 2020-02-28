@@ -3,19 +3,23 @@ const Point = require('../common/point');
 const Direction = require('../common/direction');
 const ConsoleApi = require('../api/console/console-api');
 const Pixel = require('../common/pixel');
-const SpellBombarda = require('../element/spell/spell-bombarda');
 
 class Player extends BaseElement {
 
     constructor() {
         super();
-        this.position = new Point(5, 5);
+        this.position = new Point(2, 2);
         this.direction = Direction.N;
         this.type = 'Player';
+        this.health = 100;
     }
 
     moveDirection(dir) {
-        this.position = new Point(this.position.x + dir.x, this.position.y + dir.y);
+        const x = this.position.x + dir.x;
+        const y = this.position.y + dir.y;
+        if (x > 1 && x < 20 && y > 1 && y < 40) {
+            this.position = new Point(x, y);
+        }
     }
 
     draw(game) {

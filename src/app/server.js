@@ -5,6 +5,8 @@ const SplashAnimation = require('../element/animation/splash/splash');
 const Game = require('./game');
 const Pixel = require('../common/pixel');
 const Player = require('./player');
+const Board = require('../element/board');
+const Size = require('../common/size');
 // const args = require('./args');
 
 const LOOP_INTERVAL = 300;
@@ -23,22 +25,24 @@ module.exports = (async function () {
     keyboardApi.onKey(key => {
         switch (key) {
             case 'w':
-                player1.up();
+                player1.up(game);
                 break;
             case 's':
-                player1.down();
+                player1.down(game);
                 break;
             case 'a':
-                player1.left();
+                player1.left(game);
                 break;
             case 'd':
-                player1.right();
+                player1.right(game);
                 break;
             case 'f':
                 player1.spell('bombarda');
                 break;
         }
     });
+    const board = new Board(new Size(20, 40));
+    game.add(board);
     setInterval(() => game.runFrame(), 110);
 });
 
