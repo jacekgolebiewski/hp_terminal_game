@@ -5,8 +5,6 @@ const Point = require('../common/point');
 
 class Board extends BaseElement {
 
-    size;
-
     constructor(size) {
         super();
         this.size = size;
@@ -28,4 +26,5 @@ class Board extends BaseElement {
 
     }
 }
+
 module.exports = Board;
