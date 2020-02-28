@@ -17,7 +17,7 @@ class PlayerList extends BaseElement {
         const players = game.elements.filter(el => el.type === 'Player');
         ConsoleApi.draw(new Pixel(
             {
-                x: 25, y: 1
+                x: 25, y: 7
             },
             `Lista graczy:`,
             ConsoleApi.COLOR.NEUTRAL
@@ -26,7 +26,7 @@ class PlayerList extends BaseElement {
             let currentPlayer = players[i];
             ConsoleApi.draw(new Pixel(
                 {
-                    x: 25, y: i + 2
+                    x: 25, y: i + 7
                 },
                 `${currentPlayer.name}(${PlayerList.getHealthAliveName(currentPlayer.health)}): ${currentPlayer.health}HP`,
                 PlayerList.getHealthColor(currentPlayer.health)

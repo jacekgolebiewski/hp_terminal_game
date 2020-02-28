@@ -8,6 +8,7 @@ const Player = require('./player');
 const Board = require('../element/board');
 const Size = require('../common/size');
 const PlayerList = require('../element/player-list');
+const Banner = require('../element/banner');
 // const args = require('./args');
 
 const LOOP_INTERVAL = 300;
@@ -42,9 +43,9 @@ module.exports = (async function () {
                 break;
         }
     });
-    const board = new Board(new Size(20, 40));
-    game.add(board);
+    game.add(new Banner());
     game.add(new PlayerList());
+    game.add(new Board(new Size(20, 40)));
     setInterval(() => game.runFrame(), 110);
 });
 

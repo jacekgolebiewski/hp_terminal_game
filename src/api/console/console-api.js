@@ -1,3 +1,5 @@
+const Pixel = require('../../common/pixel');
+
 const NEUTRAL = '\033[39m';
 const RED = '\033[31m';
 const LIGHT_RED = '\033[91m';
@@ -8,6 +10,7 @@ const CYAN = '\033[36m';
 const LIGHT_MAGENTA = '\033[95m';
 
 const CLEAR = '\033[2J';
+const CLEAR2 = '\033[c';
 
 const getCursorPositionChars = function (point) {
     return '\033[' + point.y + ';' + point.x + 'H';
@@ -36,7 +39,11 @@ class ConsoleApi {
     }
 
     static clear() {
-        ConsoleApi.write(CLEAR)
+        const clearString = '                                                        ';
+        const rows = 40;
+        for (let i = 1; i <= rows; i++) {
+            this.draw(new Pixel({x: 0, y: i}, clearString, ConsoleApi.COLOR.NEUTRAL));
+        }
     }
 
 }
