@@ -8,12 +8,17 @@ class Player extends BaseElement {
 
     constructor() {
         super();
-        this.position = new Point(5, 5);
-        this.type = 'Player'
+        this.position = new Point(2, 2);
+        this.type = 'Player';
+        this.health = 100;
     }
 
     moveDirection(dir) {
-        this.position = new Point(this.position.x + dir.x, this.position.y + dir.y);
+        const x = this.position.x + dir.x;
+        const y = this.position.y + dir.y;
+        if (x > 1 && x < 20 && y > 1 && y < 40) {
+            this.position = new Point(x, y);
+        }
     }
 
     draw(game) {
@@ -24,20 +29,20 @@ class Player extends BaseElement {
 
     }
 
-    up() {
-        this.moveDirection(Direction.N);
+    up(game) {
+        this.moveDirection(Direction.N, game);
     }
 
-    down() {
-        this.moveDirection(Direction.S);
+    down(game) {
+        this.moveDirection(Direction.S, game);
     }
 
-    left() {
-        this.moveDirection(Direction.E);
+    left(game) {
+        this.moveDirection(Direction.E, game);
     }
 
-    right() {
-        this.moveDirection(Direction.W);
+    right(game) {
+        this.moveDirection(Direction.W, game);
     }
 
 
