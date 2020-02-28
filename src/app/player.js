@@ -4,6 +4,7 @@ const Direction = require('../common/direction');
 const ConsoleApi = require('../api/console/console-api');
 const Pixel = require('../common/pixel');
 const SpellBombarda = require('../element/spell/spell-bombarda');
+const SpellProtego = require('../element/spell/spell-protego');
 
 class Player extends BaseElement {
 
@@ -34,6 +35,10 @@ class Player extends BaseElement {
             if (this.castSpell === 'bombarda') {
                 this.castSpell = undefined;
                 game.add(new SpellBombarda(this.position.move(this.direction), this.direction))
+            }
+            if (this.castSpell === 'protego') {
+                this.castSpell = undefined;
+                game.add(new SpellProtego(this.position.move(this.direction), this.direction))
             }
         });
     }

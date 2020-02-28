@@ -42,6 +42,9 @@ module.exports = (async function () {
             case 'f':
                 player1.spell('bombarda');
                 break;
+            case 'g':
+                player1.spell('protego');
+                break;
         }
     });
     const player2 = new Player('Player2', new Point(10, 39), Direction.N);

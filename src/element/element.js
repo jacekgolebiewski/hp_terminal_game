@@ -41,6 +41,14 @@ class BaseElement {
         fn && fn();
     }
 
+    onTimeoutReady(delay, fn) {
+        if (this.lastUpdate && Time.diff(this.lastUpdate) < delay) {
+            return;
+        }
+        this.lastUpdate = Time.now();
+        fn && fn();
+    }
+
 }
 
 module.exports = BaseElement;

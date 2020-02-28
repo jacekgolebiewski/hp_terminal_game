@@ -10,6 +10,7 @@ class SpellBombarda extends BaseElement {
         this.position = position;
         this.direction = direction;
         this.hit = 30;
+        this.type = 'Spell';
     }
 
     draw(game) {
@@ -20,14 +21,16 @@ class SpellBombarda extends BaseElement {
 
     live(game) {
         super.onLiveReady(() => {
-            const newPosition = this.position.move(this.direction);
-            const collisionElements = game.collisionElements(newPosition);
+            const collisionElements = game.collisionElements(this.position);
             if (collisionElements.some(el => el.type === 'Board')) {
                 game.delete(this);
             } else if (collisionElements.some(el => el.type === 'Player')) {
                 collisionElements.filter(el => el.type === 'Player').forEach(el => el.hit(this.hit));
                 game.delete(this);
                 game.add(new SplashAnimation(newPosition.copy()));
+            } else if (collisionElements.some(el => el.type === 'Spell')) {
+                collisionElements.filter(el => el.type === 'Spell').forEach(el => game.delete(el));
+                game.delete(this);
             } else {
                 this.position = newPosition;
             }
