@@ -43,18 +43,21 @@ class Player extends BaseElement {
                 if (this.health < 100) {
                     this.health++;
                 }
-                if (this.castSpell === 'bombarda') {
-                    const spellBombarda = new SpellBombarda(this.position.move(this.direction), this.direction);
-                    if (this.mana - spellBombarda.manaCost >= 0) {
-                        this.mana -= spellBombarda.manaCost;
-                        this.castSpell = undefined;
-                        game.add(spellBombarda)
-                    }
+
+                if (this.castSpell === undefined) {
+                    return;
                 }
 
-                if (this.castSpell === 'protego') {
+                const spells = {
+                    'bombarda': () => new SpellBombarda(this.position.move(this.direction), this.direction),
+                    'protego': () => new SpellProtego(this.position.move(this.direction))
+                };
+
+                const spell = spells[this.castSpell]();
+                if (this.mana - spell.manaCost >= 0) {
+                    this.mana -= spell.manaCost;
                     this.castSpell = undefined;
-                    game.add(new SpellProtego(this.position.move(this.direction), this.direction))
+                    game.add(spell);
                 }
             });
         }

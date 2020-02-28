@@ -10,6 +10,7 @@ class SpellProtego extends BaseElement {
         super();
         this.createdTime = Time.now();
         this.position = position;
+        this.manaCost = 10;
         this.type = 'Spell';
     }
 
