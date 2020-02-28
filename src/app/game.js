@@ -1,6 +1,7 @@
 const SocketEvent = require('../api/socket/event/event');
 const EventType = require('../api/socket/event/event-type');
 const Point = require('../common/point');
+const ConsoleApi = require('../api/console/console-api');
 
 class Game {
 
@@ -19,7 +20,7 @@ class Game {
             loopElements.splice(0, 1)[0].live(this);
         }
 
-        this.elements.forEach(el => el.draw(this))
+        this.draw();
     }
 
     markForUpdate(element) {
@@ -37,6 +38,11 @@ class Game {
             this.elements = filteredElements;
             this.events.push(new SocketEvent(EventType.DELETE, element));
         }
+    }
+
+    draw() {
+        ConsoleApi.clear();
+        this.elements.forEach(el => el.draw(this))
     }
 
 
