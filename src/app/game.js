@@ -16,10 +16,10 @@ class Game {
 
         //main game loop
         while (loopElements.length > 0) {
-            loopElements.splice(0, 1).live(this);
+            loopElements.splice(0, 1)[0].live(this);
         }
 
-        this.elements.forEach(el => el.draw(new Point(1, 1)))
+        this.elements.forEach(el => el.draw(this))
     }
 
     markForUpdate(element) {
@@ -35,7 +35,7 @@ class Game {
         const filteredElements = this.elements.filter(el => el.id !== element.id);
         if (filteredElements < this.elements) {
             this.elements = filteredElements;
-            this.events.push(new Event(EventType.DELETE, element));
+            this.events.push(new SocketEvent(EventType.DELETE, element));
         }
     }
 

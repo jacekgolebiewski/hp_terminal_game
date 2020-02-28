@@ -3,7 +3,7 @@ const RED = '\033[31m';
 const CLEAR = '\033[2J';
 
 const getCursorPositionChars = function (point) {
-    return '\e[${point.y};${point.x}H';
+    return '\033[' + point.y + ';' + point.x + 'H';
 };
 
 class ConsoleApi {

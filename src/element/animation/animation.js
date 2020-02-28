@@ -1,6 +1,9 @@
 const Time = require('../../common/time');
 const BaseElement = require('../element');
 const ConsoleApi = require('../../api/console/console-api');
+const Model = require('./model');
+const Point = require('../../common/point');
+const Pixel = require('../../common/pixel');
 
 const DELAY = 100;
 
@@ -8,10 +11,12 @@ const DELAY = 100;
 class BaseAnimation extends BaseElement {
     // lastUpdate;
 
-    constructor(frames) {
+    constructor(pixelArr) {
         super();
+        this.lastUpdate = Time.now();
+        this.position = new Point(10, 10);
         this.currentFrameIdx = 0;
-        this.frames = frames;
+        this.frames = pixelArr;
     }
 
     getCurrentFrame() {
@@ -19,19 +24,34 @@ class BaseAnimation extends BaseElement {
     }
 
     draw(game) {
-        const pixels = new Model(this.getCurrentFrame()).data;
-        pixels.forEach(pixel => ConsoleApi.draw(pixel));
-
+        if (this.finished()) {
+            game.delete(this);
+            return;
+        }
+        this.getCurrentFrame().forEach(pixel => {
+            ConsoleApi.draw(new Pixel(
+                {
+                    x: pixel.point.x + this.position.x,
+                    y: pixel.point.y + this.position.y
+                },
+                pixel.ch,
+                pixel.color));
+        });
     }
 
     live(game) {
+        if (this.finished()) {
+            game.delete(this);
+            return;
+        }
         if (this.lastUpdate && Time.diff(this.lastUpdate) < 100) {
             return;
         }
-        if (this.currentFrameIdx >= this.frames.length) {
-            game.delete(this);
-        }
         this.currentFrameIdx++;
+    }
+
+    finished() {
+        return this.currentFrameIdx >= this.frames.length;
     }
 }
 

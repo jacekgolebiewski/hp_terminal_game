@@ -7,3 +7,5 @@ class Pixel {
     }
 
 }
+
+module.exports = Pixel;
