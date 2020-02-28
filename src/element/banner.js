@@ -8,7 +8,7 @@ const banner = `
 ╦ ╦┌─┐┬─┐┬─┐┬ ┬  ╔═╗┌─┐┌┬┐┌┬┐┌─┐┬─┐
 ╠═╣├─┤├┬┘├┬┘└┬┘  ╠═╝│ │ │  │ ├┤ ├┬┘
 ╩ ╩┴ ┴┴└─┴└─ ┴   ╩  └─┘ ┴  ┴ └─┘┴└─
-             AND THE TERMINAL WORLD
+BITWA O HOGWART
 `;
 
 class Banner extends BaseElement {
@@ -29,6 +29,10 @@ class Banner extends BaseElement {
         });
     }
 
+
+    positions() {
+        return [];
+    }
 }
 
 module.exports = Banner;
