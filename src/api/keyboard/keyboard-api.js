@@ -25,3 +25,5 @@ class KeyboardApi {
     }
 
 }
+
+module.exports = KeyboardApi;
