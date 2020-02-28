@@ -10,6 +10,7 @@ class SpellBombarda extends BaseElement {
         this.position = position;
         this.direction = direction;
         this.hit = 30;
+        this.manaCost = 20;
         this.type = 'Spell';
     }
 
