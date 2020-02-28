@@ -7,6 +7,7 @@ const Pixel = require('../common/pixel');
 const Player = require('./player');
 const Board = require('../element/board');
 const Size = require('../common/size');
+const PlayerList = require('../element/player-list');
 // const args = require('./args');
 
 const LOOP_INTERVAL = 300;
@@ -20,7 +21,7 @@ module.exports = (async function () {
     const game = new Game();
     game.add(new SplashAnimation());
     const keyboardApi = new KeyboardApi();
-    const player1 = new Player();
+    const player1 = new Player('Player1');
     game.add(player1);
     keyboardApi.onKey(key => {
         switch (key) {
@@ -43,6 +44,7 @@ module.exports = (async function () {
     });
     const board = new Board(new Size(20, 40));
     game.add(board);
+    game.add(new PlayerList());
     setInterval(() => game.runFrame(), 110);
 });
 

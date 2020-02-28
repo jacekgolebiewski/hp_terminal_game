@@ -7,8 +7,9 @@ const SpellBombarda = require('../element/spell/spell-bombarda');
 
 class Player extends BaseElement {
 
-    constructor() {
+    constructor(name) {
         super();
+        this.name = name;
         this.position = new Point(2, 2);
         this.direction = Direction.N;
         this.type = 'Player';

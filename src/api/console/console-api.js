@@ -5,6 +5,7 @@ const GREEN = '\033[32m';
 const YELLOW = '\033[33m';
 const BLUE = '\033[34m';
 const CYAN = '\033[36m';
+const LIGHT_MAGENTA = '\033[95m';
 
 const CLEAR = '\033[2J';
 
@@ -21,7 +22,8 @@ class ConsoleApi {
             GREEN,
             YELLOW,
             BLUE,
-            CYAN
+            CYAN,
+            LIGHT_MAGENTA
         };
     }
 
