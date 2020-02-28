@@ -22,7 +22,7 @@ module.exports = (async function () {
 
     const game = new Game();
     const keyboardApi = new KeyboardApi();
-    const player1 = new Player('Player1', new Point(10, 2), Direction.S);
+    const player1 = new Player('Player1', new Point(10, 3), Direction.S);
 
     game.add(player1);
     keyboardApi.onKey(key => {
@@ -47,7 +47,7 @@ module.exports = (async function () {
                 break;
         }
     });
-    const player2 = new Player('Player2', new Point(10, 39), Direction.N);
+    const player2 = new Player('Player2', new Point(10, 28), Direction.N);
     keyboardApi.onKey(key => {
         switch (key) {
             case 'up':
@@ -70,7 +70,7 @@ module.exports = (async function () {
     game.add(player2);
     game.add(new Banner());
     game.add(new PlayerList());
-    game.add(new Board(new Size(20, 40)));
+    game.add(new Board(new Size(20, 30)));
     setInterval(() => game.runFrame(), 50);
 });
 

@@ -1,6 +1,7 @@
 const SocketEvent = require('../api/socket/event/event');
 const EventType = require('../api/socket/event/event-type');
 const Point = require('../common/point');
+const Pixel = require('../common/pixel');
 const ConsoleApi = require('../api/console/console-api');
 
 class Game {

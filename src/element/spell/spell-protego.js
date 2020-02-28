@@ -16,7 +16,7 @@ class SpellProtego extends BaseElement {
 
     draw(game) {
         ConsoleApi.draw(new Pixel(
-            this.position, '', ConsoleApi.COLOR.CYAN
+            this.position, '#', ConsoleApi.COLOR.CYAN
         ));
     }
 

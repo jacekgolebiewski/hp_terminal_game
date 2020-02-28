@@ -22,7 +22,8 @@ class SpellBombarda extends BaseElement {
 
     live(game) {
         super.onLiveReady(() => {
-            const collisionElements = game.collisionElements(this.position);
+            const newPosition = this.position.move(this.direction);
+            const collisionElements = game.collisionElements(newPosition);
             if (collisionElements.some(el => el.type === 'Board')) {
                 game.delete(this);
             } else if (collisionElements.some(el => el.type === 'Player')) {
