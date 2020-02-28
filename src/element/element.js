@@ -28,6 +28,11 @@ class BaseElement {
         }
     }
 
+    positions(){
+        this.validate();
+        throw Error(`Implement positions() method of your element: ${this.type}`);
+    }
+
     onLiveReady(fn) {
         if (this.lastUpdate && Time.diff(this.lastUpdate) < 100) {
             return;
