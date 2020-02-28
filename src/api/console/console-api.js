@@ -1,5 +1,10 @@
 const NEUTRAL = '\033[39m';
 const RED = '\033[31m';
+const GREEN = '\033[32m';
+const YELLOW = '\033[33m';
+const BLUE = '\033[34m';
+const CYAN = '\033[36m';
+
 const CLEAR = '\033[2J';
 
 const getCursorPositionChars = function (point) {
@@ -10,7 +15,11 @@ class ConsoleApi {
     static get COLOR() {
         return {
             NEUTRAL,
-            RED
+            RED,
+            GREEN,
+            YELLOW,
+            BLUE,
+            CYAN
         };
     }
 
