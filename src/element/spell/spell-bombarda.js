@@ -1,6 +1,7 @@
 const BaseElement = require('../element');
 const ConsoleApi = require('./../../api/console/console-api');
 const Pixel = require('../../common/pixel');
+const SplashAnimation = require('../animation/splash/splash');
 
 class SpellBombarda extends BaseElement {
 
@@ -25,6 +26,8 @@ class SpellBombarda extends BaseElement {
                 game.delete(this);
             } else if (collisionElements.some(el => el.type === 'Player')) {
                 collisionElements.filter(el => el.type === 'Player').forEach(el => el.hit(this.hit));
+                game.delete(this);
+                game.add(new SplashAnimation(newPosition.copy()));
             } else {
                 this.position = newPosition;
             }

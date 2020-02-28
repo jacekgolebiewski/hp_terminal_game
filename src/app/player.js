@@ -7,11 +7,11 @@ const SpellBombarda = require('../element/spell/spell-bombarda');
 
 class Player extends BaseElement {
 
-    constructor(name) {
+    constructor(name, position, direction) {
         super();
         this.name = name;
-        this.position = new Point(2, 2);
-        this.direction = Direction.N;
+        this.position = position;
+        this.direction = direction;
         this.type = 'Player';
         this.health = 100;
     }
@@ -59,6 +59,11 @@ class Player extends BaseElement {
     }
 
     hit(hit) {
+        const newHealth = this.health - hit;
+        if (newHealth < 0) {
+            this.health = 0;
+            return;
+        }
         this.health -= hit;
     }
 

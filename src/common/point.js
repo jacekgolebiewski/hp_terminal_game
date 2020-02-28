@@ -13,6 +13,10 @@ class Point {
         return new Point(this.x + dir.x, this.y + dir.y);
     }
 
+    copy() {
+        return new Point(this.x, this.y);
+    }
+
 }
 
 module.exports = Point;

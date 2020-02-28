@@ -50,7 +50,7 @@ class PlayerList extends BaseElement {
         }
         return ConsoleApi.COLOR.LIGHT_MAGENTA;
     }
-    
+
     positions() {
         return [];
     }

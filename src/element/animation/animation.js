@@ -11,9 +11,9 @@ const DELAY = 100;
 class BaseAnimation extends BaseElement {
     // lastUpdate;
 
-    constructor(pixelArr) {
+    constructor(pixelArr, position) {
         super();
-        this.position = new Point(10, 10);
+        this.position = position;
         this.currentFrameIdx = 0;
         this.frames = pixelArr;
     }
