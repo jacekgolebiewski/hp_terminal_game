@@ -1,0 +1,23 @@
+{
+  "name": "hp_terminal_game",
+  "version": "1.0.0",
+  "description": "\"Harry Potter\" game in terminal running on Node JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacekgolebiewski/hp_terminal_game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacekgolebiewski/hp_terminal_game/issues"
+  },
+  "homepage": "https://github.com/jacekgolebiewski/hp_terminal_game#readme",
+  "dependencies": {
+    "keypress": "^0.2.1",
+    "yargs": "^15.1.0"
+  }
+}
