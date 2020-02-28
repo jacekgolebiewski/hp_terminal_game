@@ -45,6 +45,10 @@ class Game {
         this.elements.forEach(el => el.draw(this))
     }
 
+    collisionElements(position) {
+        return this.elements.filter(el => el.positions().some(pos => pos.same(position)));
+    }
+
 
 }
 

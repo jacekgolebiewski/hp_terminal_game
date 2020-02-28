@@ -51,6 +51,10 @@ class BaseAnimation extends BaseElement {
     finished() {
         return this.currentFrameIdx >= this.frames.length;
     }
+
+    positions() {
+        return [];
+    }
 }
 
 module.exports = BaseAnimation;

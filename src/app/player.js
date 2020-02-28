@@ -16,21 +16,12 @@ class Player extends BaseElement {
         this.health = 100;
     }
 
-    moveDirection(dir) {
-        // calcNewPoisition
-
-        // game.elements.filter(el => {
-        //  el.positions.any(pos => pos.x === newPos.x && pox.y === newPos.y
-        //  && type === Player || type === Board
-        //  );
-        // ) {
-        // return;
-        //}
-
-        const x = this.position.x + dir.x;
-        const y = this.position.y + dir.y;
-        if (x > 1 && x < 20 && y > 1 && y < 40) {
-            this.position = new Point(x, y);
+    moveDirection(game, dir) {
+        const newPosition = this.position.move(dir);
+        const collisionElements = game.collisionElements(newPosition);
+        if (collisionElements.some(el => el.type === 'Player' || el.type === 'Board')) {
+        } else {
+            this.position = newPosition;
         }
     }
 
@@ -42,34 +33,38 @@ class Player extends BaseElement {
         super.onLiveReady(() => {
             if (this.castSpell === 'bombarda') {
                 this.castSpell = undefined;
-                game.add(new SpellBombarda(Object.assign({},this.position), this.direction))
+                game.add(new SpellBombarda(this.position.move(this.direction), this.direction))
             }
         });
     }
 
-    up() {
-        this.moveDirection(Direction.N);
+    up(game) {
+        this.moveDirection(game, Direction.N);
     }
 
-    down() {
-        this.moveDirection(Direction.S);
+    down(game) {
+        this.moveDirection(game, Direction.S);
     }
 
-    left() {
-        this.moveDirection(Direction.E);
+    left(game) {
+        this.moveDirection(game, Direction.E);
     }
 
-    right() {
-        this.moveDirection(Direction.W);
+    right(game) {
+        this.moveDirection(game, Direction.W);
     }
 
     spell(name) {
         this.castSpell = name;
     }
 
-    //hit()
+    hit(hit) {
+        this.health -= hit;
+    }
 
-
+    positions() {
+        return [this.position];
+    }
 }
 
 module.exports = Player;

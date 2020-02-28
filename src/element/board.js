@@ -5,27 +5,40 @@ const Point = require('../common/point');
 
 const BOARD_COLOR = ConsoleApi.COLOR.NEUTRAL;
 
+function calculatePoints(size) {
+    let points = [];
+    for (let i=1; i<=size.x; i++) {
+        points.push(new Point(i, 1));
+        points.push(new Point(i, size.y));
+    }
+    for (let i=1; i<=size.y; i++) {
+        points.push(new Point(1, i));
+        points.push(new Point(size.x, i));
+    }
+    return points;
+}
 class Board extends BaseElement {
 
     constructor(size) {
         super();
         this.size = size;
+        this.type = 'Board';
+        this.points = calculatePoints(size);
     }
 
     draw(game) {
-        for (let i=1; i<=this.size.x; i++) {
-            ConsoleApi.draw(new Pixel(new Point(i, 0), '#', BOARD_COLOR))
-            ConsoleApi.draw(new Pixel(new Point(i, this.size.y), '#', BOARD_COLOR))
-        }
-        for (let i=1; i<=this.size.y; i++) {
-            ConsoleApi.draw(new Pixel(new Point(0, i), '#', BOARD_COLOR))
-            ConsoleApi.draw(new Pixel(new Point(this.size.x, i), '#', BOARD_COLOR))
-        }
+        this.points.forEach(value => {
+            ConsoleApi.draw(new Pixel(value, '#', BOARD_COLOR))
+        });
     }
 
 
     live(game) {
 
+    }
+
+    positions() {
+        return this.points;
     }
 }
 

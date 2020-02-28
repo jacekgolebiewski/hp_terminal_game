@@ -1,6 +1,5 @@
 const BaseElement = require('../element');
 const ConsoleApi = require('./../../api/console/console-api');
-const Time = require('../../common/time');
 const Pixel = require('../../common/pixel');
 
 class SpellBombarda extends BaseElement {
@@ -9,7 +8,6 @@ class SpellBombarda extends BaseElement {
         super();
         this.position = position;
         this.direction = direction;
-
         this.hit = 30;
     }
 
@@ -21,25 +19,21 @@ class SpellBombarda extends BaseElement {
 
     live(game) {
         super.onLiveReady(() => {
-            this.position.x += this.direction.x;
-            this.position.y += this.direction.y;
-
-            // calcNewPoisition
-
-            // game.elements.filter(el => {
-            //  el.positions.any(pos => pos.x === newPos.x && pox.y === newPos.y
-            //type === Board
-            //  );
-            // ) {
-            // return;
-            //}
-
-
-            // a jezeli Player
-            //player.hit(hit)
+            const newPosition = this.position.move(this.direction);
+            const collisionElements = game.collisionElements(newPosition);
+            if (collisionElements.some(el => el.type === 'Board')) {
+                game.delete(this);
+            } else if (collisionElements.some(el => el.type === 'Player')) {
+                collisionElements.filter(el => el.type === 'Player').forEach(el => el.hit(this.hit));
+            } else {
+                this.position = newPosition;
+            }
         });
     }
 
+    positions() {
+        return [this.position];
+    }
 }
 
 module.exports = SpellBombarda;
