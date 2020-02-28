@@ -23,6 +23,20 @@ class SpellBombarda extends BaseElement {
         super.onLiveReady(() => {
             this.position.x += this.direction.x;
             this.position.y += this.direction.y;
+
+            // calcNewPoisition
+
+            // game.elements.filter(el => {
+            //  el.positions.any(pos => pos.x === newPos.x && pox.y === newPos.y
+            //type === Board
+            //  );
+            // ) {
+            // return;
+            //}
+
+
+            // a jezeli Player
+            //player.hit(hit)
         });
     }
 

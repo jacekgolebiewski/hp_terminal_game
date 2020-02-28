@@ -15,6 +15,16 @@ class Player extends BaseElement {
     }
 
     moveDirection(dir) {
+        // calcNewPoisition
+
+        // game.elements.filter(el => {
+        //  el.positions.any(pos => pos.x === newPos.x && pox.y === newPos.y
+        //  && type === Player || type === Board
+        //  );
+        // ) {
+        // return;
+        //}
+
         const x = this.position.x + dir.x;
         const y = this.position.y + dir.y;
         if (x > 1 && x < 20 && y > 1 && y < 40) {
@@ -54,6 +64,8 @@ class Player extends BaseElement {
     spell(name) {
         this.castSpell = name;
     }
+
+    //hit()
 
 
 }
