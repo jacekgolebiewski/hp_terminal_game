@@ -48,10 +48,13 @@ module.exports = (async function () {
                 player1.right(game);
                 break;
             case 'f':
-                player1.spell('bombarda');
+                player1.spell('protego');
                 break;
             case 'g':
-                player1.spell('protego');
+                player1.spell('bombarda');
+                break;
+            case 'h':
+                player1.spell('avada');
                 break;
         }
     });
@@ -70,11 +73,14 @@ module.exports = (async function () {
             case 'right':
                 player2.right(game);
                 break;
-            case '/':
-                player2.spell('bombarda');
+            case ',':
+                player2.spell('protego');
                 break;
             case '.':
                 player2.spell('protego');
+                break;
+            case '/':
+                player2.spell('conflagration');
                 break;
         }
     });

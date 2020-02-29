@@ -5,6 +5,7 @@ const ConsoleApi = require('../api/console/console-api');
 const Pixel = require('../common/pixel');
 const SpellBombarda = require('../element/spell/spell-bombarda');
 const SpellProtego = require('../element/spell/spell-protego');
+const SpellConflagration = require('../element/spell/spell-conflagration');
 const PlayerStats = require('./player-stats');
 
 class Player extends BaseElement {
@@ -59,8 +60,9 @@ class Player extends BaseElement {
                 }
 
                 const spells = {
+                    'protego': () => new SpellProtego(this),
                     'bombarda': () => new SpellBombarda(this, this.position.move(this.direction), this.direction),
-                    'protego': () => new SpellProtego(this)
+                    'conflagration': () => new SpellConflagration(this)
                 };
 
                 const spell = spells[this.castSpell]();
