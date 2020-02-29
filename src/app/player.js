@@ -5,18 +5,28 @@ const ConsoleApi = require('../api/console/console-api');
 const Pixel = require('../common/pixel');
 const SpellBombarda = require('../element/spell/spell-bombarda');
 const SpellProtego = require('../element/spell/spell-protego');
+const PlayerStats = require('./player-stats');
 
 class Player extends BaseElement {
 
     constructor(name, position, direction) {
         super();
         this.name = name;
+        this.initPosition = position;
         this.position = position;
         this.direction = direction;
         this.type = 'Player';
         this.health = 100;
         this.mana = 100;
         this.alive = true;
+        this.playerStats = new PlayerStats();
+    }
+
+    reset() {
+        this.alive = true;
+        this.health = 100;
+        this.mana = 100;
+        this.position = this.initPosition;
     }
 
     moveDirection(game, dir) {
@@ -49,7 +59,7 @@ class Player extends BaseElement {
                 }
 
                 const spells = {
-                    'bombarda': () => new SpellBombarda(this.position.move(this.direction), this.direction),
+                    'bombarda': () => new SpellBombarda(this, this.position.move(this.direction), this.direction),
                     'protego': () => new SpellProtego(this)
                 };
 
@@ -84,14 +94,26 @@ class Player extends BaseElement {
         this.castSpell = name;
     }
 
-    hit(hit) {
-        const newHealth = this.health - hit;
-        if (newHealth < 0) {
-            this.alive = false;
-            this.health = 0;
-            return;
+    hit(owner, hit) {
+        if (this.alive) {
+            const newHealth = this.health - hit;
+            if (newHealth <= 0) {
+                this.death();
+                owner.kill();
+            } else {
+                this.health -= hit;
+            }
         }
-        this.health -= hit;
+    }
+
+    kill() {
+        this.playerStats.kill();
+    }
+
+    death() {
+        this.playerStats.death();
+        this.alive = false;
+        this.health = 0;
     }
 
     positions() {

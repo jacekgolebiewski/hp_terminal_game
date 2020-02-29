@@ -14,7 +14,7 @@ function frameToPixels(frame, offset, color, transparent) {
             idx++;
             continue;
         }
-        if (ch === '_') {
+        if (ch === '0') {
             if (transparent) {
                 result.push(new Pixel(new Point(currentX + offset.x, currentY + offset.y), ' ', color));
             }
