@@ -11,7 +11,7 @@ class SpellBombarda extends BaseElement {
         this.direction = direction;
         this.hit = 30;
         this.manaCost = 20;
-        this.type = 'Spell';
+        this.type = 'SpellBombarda';
     }
 
     draw(game) {
@@ -30,8 +30,10 @@ class SpellBombarda extends BaseElement {
                 collisionElements.filter(el => el.type === 'Player').forEach(el => el.hit(this.hit));
                 game.delete(this);
                 game.add(new SplashAnimation(newPosition.copy()));
-            } else if (collisionElements.some(el => el.type === 'Spell')) {
-                collisionElements.filter(el => el.type === 'Spell').forEach(el => game.delete(el));
+            } else if (collisionElements.some(el => el.type === 'SpellBombarda')) {
+                collisionElements.filter(el => el.type === 'SpellBombarda').forEach(el => game.delete(el));
+                game.delete(this);
+            } else if (collisionElements.some(el => el.type === 'SpellProtego')) {
                 game.delete(this);
             } else {
                 this.position = newPosition;

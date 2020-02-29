@@ -18,8 +18,6 @@ module.exports = (async function () {
 
     ConsoleApi.clear();
 
-    ConsoleApi.draw(new Pixel({x: 5, y: 10}, '#', ConsoleApi.COLOR.RED));
-
     const game = new Game();
     const keyboardApi = new KeyboardApi();
     const player1 = new Player('Player1', new Point(10, 3), Direction.S);
@@ -64,6 +62,9 @@ module.exports = (async function () {
                 break;
             case '/':
                 player2.spell('bombarda');
+                break;
+            case '.':
+                player2.spell('protego');
                 break;
         }
     });

@@ -17,6 +17,10 @@ class Direction {
         this.y = y;
     }
 
+    same(dir){
+        return this.x === dir.x && this.y === dir.y;
+    }
+
 }
 
 module.exports = Direction;

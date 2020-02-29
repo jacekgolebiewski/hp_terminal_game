@@ -1,33 +1,61 @@
 const BaseElement = require('../element');
 const ConsoleApi = require('./../../api/console/console-api');
 const Pixel = require('../../common/pixel');
-const SplashAnimation = require('../animation/splash/splash');
+const Direction = require('../../common/direction');
 const Time = require('../../common/time');
 
 class SpellProtego extends BaseElement {
 
-    constructor(position) {
+    constructor(player) {
         super();
         this.createdTime = Time.now();
-        this.position = position;
+        this.player = player;
         this.manaCost = 10;
-        this.type = 'Spell';
+        this.type = 'SpellProtego';
+        this.points = [];
     }
 
     draw(game) {
+        const centerPoint = this.player.position.move(this.player.direction);
+        this.points.push(centerPoint);
         ConsoleApi.draw(new Pixel(
-            this.position, '#', ConsoleApi.COLOR.CYAN
+            centerPoint, '═', ConsoleApi.COLOR.CYAN
         ));
+        if (this.player.direction.same(Direction.N)) {
+            const rightPoint = this.player.position.move(this.player.direction).move(Direction.W);
+            this.points.push(rightPoint);
+            ConsoleApi.draw(new Pixel(
+                rightPoint, '╗', ConsoleApi.COLOR.CYAN
+            ));
+            const leftPoint = this.player.position.move(this.player.direction).move(Direction.E);
+            this.points.push(leftPoint);
+            ConsoleApi.draw(new Pixel(
+                leftPoint, '╔', ConsoleApi.COLOR.CYAN
+            ));
+        }
+        if (this.player.direction.same(Direction.S)) {
+            const rightPoint = this.player.position.move(this.player.direction).move(Direction.W);
+            this.points.push(rightPoint);
+            ConsoleApi.draw(new Pixel(
+                rightPoint, '╝', ConsoleApi.COLOR.CYAN
+            ));
+            const leftPoint = this.player.position.move(this.player.direction).move(Direction.E);
+            this.points.push(leftPoint);
+            ConsoleApi.draw(new Pixel(
+                leftPoint, '╚', ConsoleApi.COLOR.CYAN
+            ));
+        }
+
     }
 
     live(game) {
-        if (Time.now() - this.createdTime > 1000) {
+        if (Time.now() - this.createdTime > 2000) {
             game.delete(this);
         }
     }
 
     positions() {
-        return [this.position];
+        return this.points;
     }
 }
 
