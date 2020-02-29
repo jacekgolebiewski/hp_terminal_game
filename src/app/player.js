@@ -5,6 +5,7 @@ const ConsoleApi = require('../api/console/console-api');
 const Pixel = require('../common/pixel');
 const SpellBombarda = require('../element/spell/spell-bombarda');
 const SpellProtego = require('../element/spell/spell-protego');
+const SpellAvada = require('../element/spell/spell-avada');
 const SpellConflagration = require('../element/spell/spell-conflagration');
 const PlayerStats = require('./player-stats');
 
@@ -49,10 +50,10 @@ class Player extends BaseElement {
         if (this.alive) {
             super.onLiveReady(() => {
                 if (this.mana < 100) {
-                    this.mana++;
+                    this.mana+=10;
                 }
                 if (this.health < 100) {
-                    this.health++;
+                    this.health ++;
                 }
 
                 if (this.castSpell === undefined) {
@@ -63,6 +64,7 @@ class Player extends BaseElement {
                     'protego': () => new SpellProtego(this),
                     'bombarda': () => new SpellBombarda(this, this.position.move(this.direction), this.direction),
                     'conflagration': () => new SpellConflagration(this)
+                    'avada': () => new SpellAvada(this, this.position.move(this.direction), this.direction)
                 };
 
                 const spell = spells[this.castSpell]();

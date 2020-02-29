@@ -96,7 +96,7 @@ module.exports = (async function () {
         if (match.isRoundFinished()) {
             game.elements.filter(value => value.type.startsWith('Spell')).forEach(el => game.delete(el));
         }
-    }, 50);
+    }, 30);
     setInterval(() => {
         if (match.isRoundFinished()) {
             const roundFinishedBanner = new RoundFinishedBanner();
