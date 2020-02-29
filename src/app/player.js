@@ -63,7 +63,7 @@ class Player extends BaseElement {
                 const spells = {
                     'protego': () => new SpellProtego(this),
                     'bombarda': () => new SpellBombarda(this, this.position.move(this.direction), this.direction),
-                    'conflagration': () => new SpellConflagration(this)
+                    'conflagration': () => new SpellConflagration(this),
                     'avada': () => new SpellAvada(this, this.position.move(this.direction), this.direction)
                 };
 
