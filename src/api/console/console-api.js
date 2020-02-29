@@ -1,4 +1,5 @@
 const Pixel = require('../../common/pixel');
+const Point = require('../../common/point');
 
 const NEUTRAL = '\033[39m';
 const RED = '\033[31m';
@@ -42,7 +43,7 @@ class ConsoleApi {
         const clearString = '                                                        ';
         const rows = 40;
         for (let i = 1; i <= rows; i++) {
-            this.draw(new Pixel({x: 0, y: i}, clearString, ConsoleApi.COLOR.NEUTRAL));
+            this.draw(new Pixel(new Point(0,  i), clearString, ConsoleApi.COLOR.NEUTRAL));
         }
     }
 
