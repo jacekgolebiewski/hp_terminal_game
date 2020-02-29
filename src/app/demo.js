@@ -77,7 +77,7 @@ module.exports = (async function () {
                 player2.spell('protego');
                 break;
             case '.':
-                player2.spell('protego');
+                player2.spell('bombarda');
                 break;
             case '/':
                 player2.spell('conflagration');
