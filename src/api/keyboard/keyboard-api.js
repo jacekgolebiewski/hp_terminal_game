@@ -13,6 +13,7 @@ class KeyboardApi {
             }
             if (key && key.ctrl && key.name == 'c') {
                 process.stdin.pause();
+                process.exit(0);
             }
         });
         process.stdin.setRawMode(true);

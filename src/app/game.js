@@ -8,7 +8,6 @@ class Game {
 
     constructor() {
         this.offset = new Point(1,1);
-        this.events = [];
         this.elements = [];
     }
 
@@ -17,20 +16,14 @@ class Game {
         this.draw();
     }
 
-    markForUpdate(element) {
-        this.events.push(new SocketEvent(EventType.UPDATE, element));
-    }
-
     add(element) {
         this.elements.push(element);
-        this.events.push(new SocketEvent(EventType.CREATE, element));
     }
 
     delete(element) {
         const filteredElements = this.elements.filter(el => el.id !== element.id);
         if (filteredElements < this.elements) {
             this.elements = filteredElements;
-            this.events.push(new SocketEvent(EventType.DELETE, element));
         }
     }
 
