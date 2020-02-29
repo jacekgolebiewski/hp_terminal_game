@@ -53,6 +53,9 @@ module.exports = (async function () {
             case 'g':
                 player1.spell('protego');
                 break;
+            case 'h':
+                player1.spell('avada');
+                break;
         }
     });
     const player2 = new Player('Player2', new Point(10, 28), Direction.N);
@@ -76,6 +79,9 @@ module.exports = (async function () {
             case '.':
                 player2.spell('protego');
                 break;
+            case ',':
+                player1.spell('avada');
+                break;
         }
     });
     const game = new Game();
@@ -90,7 +96,7 @@ module.exports = (async function () {
         if (match.isRoundFinished()) {
             game.elements.filter(value => value.type.startsWith('Spell')).forEach(el => game.delete(el));
         }
-    }, 50);
+    }, 30);
     setInterval(() => {
         if (match.isRoundFinished()) {
             const roundFinishedBanner = new RoundFinishedBanner();
