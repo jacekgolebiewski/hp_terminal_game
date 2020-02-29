@@ -13,14 +13,7 @@ class Game {
     }
 
     runFrame() {
-        this.elements.sort(el => el.priority);
-        let loopElements = [...this.elements];
-
-        //main game loop
-        while (loopElements.length > 0) {
-            loopElements.splice(0, 1)[0].live(this);
-        }
-
+        this.process();
         this.draw();
     }
 
@@ -38,6 +31,14 @@ class Game {
         if (filteredElements < this.elements) {
             this.elements = filteredElements;
             this.events.push(new SocketEvent(EventType.DELETE, element));
+        }
+    }
+
+    process() {
+        this.elements.sort(el => el.priority);
+        let loopElements = [...this.elements];
+        while (loopElements.length > 0) {
+            loopElements.splice(0, 1)[0].live(this);
         }
     }
 
