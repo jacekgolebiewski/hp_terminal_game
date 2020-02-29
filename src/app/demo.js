@@ -30,9 +30,6 @@ function buildWorld(game, player1, player2) {
 module.exports = (async function () {
 
     ConsoleApi.clear();
-    const avada = load('C:\\Users\\pkobus\\reps\\hp_terminal_game\\resources\\avada.wav');
-
-
     const keyboardApi = new KeyboardApi();
     const voldemort = new Player('Voldemort', 'V', new Point(10, 3), Direction.S);
     keyboardApi.onKey(key => {
