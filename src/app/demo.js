@@ -10,19 +10,29 @@ const Direction = require('../common/direction');
 const Size = require('../common/size');
 const PlayerList = require('../element/player-list');
 const Banner = require('../element/banner');
+const Match = require('./match');
+const RoundFinishedBanner = require('../element/round-finished-banner');
+const CastleBanner = require('../element/castle-banner');
 // const args = require('./args');
 
 const LOOP_INTERVAL = 300;
+
+function buildWorld(game, player1, player2) {
+    game.add(player1);
+    game.add(player2);
+    game.add(new Banner());
+    game.add(new PlayerList());
+    game.add(new Board(new Size(20, 30)));
+    game.add(new CastleBanner());
+}
 
 module.exports = (async function () {
 
     ConsoleApi.clear();
 
-    const game = new Game();
+
     const keyboardApi = new KeyboardApi();
     const player1 = new Player('Player1', new Point(10, 3), Direction.S);
-
-    game.add(player1);
     keyboardApi.onKey(key => {
         switch (key) {
             case 'w':
@@ -68,11 +78,30 @@ module.exports = (async function () {
                 break;
         }
     });
-    game.add(player2);
-    game.add(new Banner());
-    game.add(new PlayerList());
-    game.add(new Board(new Size(20, 30)));
-    setInterval(() => game.runFrame(), 50);
+    const game = new Game();
+    buildWorld(game, player1, player2);
+
+    const match = new Match();
+    match.addPlayer(player1);
+    match.addPlayer(player2);
+
+    setInterval(() => {
+        game.runFrame()
+        if (match.isRoundFinished()) {
+            game.elements.filter(value => value.type.startsWith('Spell')).forEach(el => game.delete(el));
+        }
+    }, 50);
+    setInterval(() => {
+        if (match.isRoundFinished()) {
+            const roundFinishedBanner = new RoundFinishedBanner();
+            game.add(roundFinishedBanner);
+            setTimeout(() => {
+                game.delete(roundFinishedBanner)
+                match.startNewRound();
+            }, 2000);
+        }
+    }, 500);
+
 });
 
 function sleep(ms) {

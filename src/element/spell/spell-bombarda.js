@@ -5,9 +5,10 @@ const SplashAnimation = require('../animation/splash/splash');
 
 class SpellBombarda extends BaseElement {
 
-    constructor(position, direction) {
+    constructor(owner, position, direction) {
         super();
         this.position = position;
+        this.owner = owner;
         this.direction = direction;
         this.hit = 30;
         this.manaCost = 20;
@@ -27,7 +28,7 @@ class SpellBombarda extends BaseElement {
             if (collisionElements.some(el => el.type === 'Board')) {
                 game.delete(this);
             } else if (collisionElements.some(el => el.type === 'Player')) {
-                collisionElements.filter(el => el.type === 'Player').forEach(el => el.hit(this.hit));
+                collisionElements.filter(el => el.type === 'Player').forEach(el => el.hit(this.owner, this.hit));
                 game.delete(this);
                 game.add(new SplashAnimation(newPosition.copy()));
             } else if (collisionElements.some(el => el.type === 'SpellBombarda')) {

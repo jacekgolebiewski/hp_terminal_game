@@ -28,7 +28,7 @@ class PlayerList extends BaseElement {
                 {
                     x: 25, y: i + 7
                 },
-                `${currentPlayer.name}(${PlayerList.getHealthAliveName(currentPlayer.alive)}): ${currentPlayer.health}HP, ${currentPlayer.mana}MP`,
+                `${currentPlayer.name}(${PlayerList.getHealthAliveName(currentPlayer.alive)}): ${currentPlayer.health} HP, ${currentPlayer.mana} MP, ${currentPlayer.playerStats.kills} kills, ${currentPlayer.playerStats.deaths} deaths`,
                 currentPlayer.getHealthColor()
             ));
         }
