@@ -5,7 +5,6 @@ const SplashAnimation = require('../animation/splash/splash');
 
 class SpellAvada extends BaseElement {
 
-
     constructor(owner, position, direction) {
         super();
         this.points = [position];
@@ -17,7 +16,6 @@ class SpellAvada extends BaseElement {
         this.type = 'SpellAvada';
     }
 
-
     draw(game) {
         this.points.forEach(point => {
             ConsoleApi.draw(new Pixel(
@@ -27,7 +25,7 @@ class SpellAvada extends BaseElement {
     }
 
     live(game) {
-        super.onTimeoutReady(10, () => {
+        super.onTimeoutReady(100, () => {
             const newPosition = this.position.move(this.direction);
             const collisionElements = game.collisionElements(newPosition);
             if (collisionElements.some(el => el.type === 'Board')) {

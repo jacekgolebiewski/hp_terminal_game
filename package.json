@@ -18,7 +18,6 @@
   "homepage": "https://github.com/jacekgolebiewski/hp_terminal_game#readme",
   "dependencies": {
     "keypress": "^0.2.1",
-    "observable": "^2.1.4",
     "yargs": "^15.1.0"
   }
 }

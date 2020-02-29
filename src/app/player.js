@@ -11,9 +11,10 @@ const PlayerStats = require('./player-stats');
 
 class Player extends BaseElement {
 
-    constructor(name, position, direction) {
+    constructor(name, symbol, position, direction) {
         super();
         this.name = name;
+        this.symbol = symbol;
         this.initPosition = position;
         this.position = position;
         this.direction = direction;
@@ -43,7 +44,7 @@ class Player extends BaseElement {
     }
 
     draw(game) {
-        ConsoleApi.draw(new Pixel(this.position, '@', this.getHealthColor()))
+        ConsoleApi.draw(new Pixel(this.position, this.symbol, this.getHealthColor()))
     }
 
     live(game) {
