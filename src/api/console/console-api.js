@@ -17,6 +17,8 @@ const getCursorPositionChars = function (point) {
     return '\033[' + point.y + ';' + point.x + 'H';
 };
 
+let buffer = [];
+
 class ConsoleApi {
     static get COLOR() {
         return {
@@ -31,8 +33,19 @@ class ConsoleApi {
         };
     }
 
+
+    static toString(pixel) {
+        return `${getCursorPositionChars(pixel.point)}${pixel.color}${pixel.ch}${ConsoleApi.COLOR.NEUTRAL}`;
+    }
+
     static draw(pixel) {
-        ConsoleApi.write(`${getCursorPositionChars(pixel.point)}${pixel.color}${pixel.ch}${ConsoleApi.COLOR.NEUTRAL}`);
+        buffer.push(pixel);
+    }
+
+    static render() {
+        const display = buffer.map(pixel => ConsoleApi.toString(pixel)).join('');
+        buffer = [];
+        ConsoleApi.write(display);
     }
 
     static write(str) {
@@ -43,8 +56,9 @@ class ConsoleApi {
         const clearString = '                                                        ';
         const rows = 40;
         for (let i = 1; i <= rows; i++) {
-            this.draw(new Pixel(new Point(0,  i), clearString, ConsoleApi.COLOR.NEUTRAL));
+            this.draw(new Pixel(new Point(0, i), clearString, ConsoleApi.COLOR.NEUTRAL));
         }
+        ConsoleApi.render();
     }
 
 }

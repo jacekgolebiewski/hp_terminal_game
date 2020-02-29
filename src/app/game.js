@@ -37,7 +37,8 @@ class Game {
 
     draw() {
         ConsoleApi.clear();
-        this.elements.forEach(el => el.draw(this))
+        this.elements.forEach(el => el.draw(this));
+        ConsoleApi.render();
     }
 
     collisionElements(position) {
