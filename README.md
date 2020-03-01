@@ -13,10 +13,10 @@ To run game:
 ## Gameplay
  * 2 players play against each other
  * 1st player is Harry Potter:
-    * controls: <arrow keys>, /,.
+    * controls: (arrow keys), /,.
     * spells: protego, bombarda, conflagration 
 * 2nd player is Voldemort:
-    * controls: <wsad keys>, fgh
+    * controls: (wsad keys), fgh
     * spells: protego, bombarda, avada kedavra
     
 
