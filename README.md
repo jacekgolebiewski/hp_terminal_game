@@ -1,74 +1,25 @@
 # hp_terminal_game
 "Harry Potter" game in terminal running on Node JS
 
-## Plan
+## General
 
-Nazwa: Harry Potter and the Terminal World
+Game created on **Isolution Hackathon V** 28.02.2020.
 
-### Parametry wejściowe
+## Run
+To run game:
+* install dependencies: 'npm i'
+* run with: 'node index js'
+ 
+## Gameplay
+ * 2 players play against each other
+ * 1st player is Harry Potter:
+    * controls: <arrow keys>, /,.
+    * spells: protego, bombarda, conflagration 
+* 2nd player is Voldemort:
+    * controls: <wsad keys>, fgh
+    * spells: protego, bombarda, avada kedavra
+    
 
-Uzyjemy `yargs` zeby uruchamiac server lub client
-parametry do uruchomienia: IP, port, imię, symbol
-
-Na start serwera wygeneruj polecenie do przyłączenia
-
-### Obsługa klawiatury
-
-https://www.npmjs.com/package/observable
-
-
-### Model do wyświetlenia
-
-Model można załadować importując plik js, który eksportuje string, taki jak poniżej:
-
-```
-module.exports = `
----
-| |
----
-`
-```
-
-dodatkowo model może miec kolor i być przeźroczysty (ignoruj spacje)
-
-### Wyświetlanie
-
-przykład rysowania na terminalu (zdjęcia na tel)
-
-Każdy typ elementu ma swój priorytet wyswietlania (100,200,300)
-
-Czar uderzając mógłby powodować obiekt animacji
-
-### Pętla gry
-
-* Eventy przychodzące odkładamy na kolejkę (w tym eventy dołączenia)
-* W pętli serwera przetwarzamy input (eventy, najpierw przystąpienia)
-* W pętli serwera przetwarzamy logikę aplikacji
-* Logika wykonuje operacje na obiekcie Game (znajdź obiekt), game zawiera metody markNew, markChanged, markRemoved (id elementu)
-* przesłanie kolekcji markedElements do klientów
-
-### Sleep
-
-https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-
-### Czary do przemyślenia 
-
-Protego
-Confringo
-Expelliarmus
-Avada kedavra
-Protego maxima
-Lumos
-Episkey
-Ferula
-Immobilus?
-Petrificus totalus
-Rennervate
-
-### Przemyślenia
-    Na początku intro o tym jak HP dotknął komputera-swistoklika
-    Przeszkody na początku odgradzają dwie strony
-    werbalne czary nie zużywają many?
     
 ## Resources
 
